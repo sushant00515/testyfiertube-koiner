@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Get Coins - Custom</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="main-card">
+<!-- Header -->
+<div class="top-header">
+<img alt="Back" class="back-icon" src="back arrrowwww.png"/>
+<h2 class="header">Get Coins</h2>
+<img alt="History" class="history-icon" src="TransTon.png"/>
+</div>
+<!-- Logo + Recharge summary -->
+<div class="recharge-box">
+<img alt="custom icon" class="custom-icon" src="tiktok-logo-tiktok-icon-representing-social-media-NXSrnt6n.jpg"/>
+<div class="recharge-right">
+<p class="recharge-label">Recharge</p>
+<p class="recharge-value">
+<img alt="coin" class="coin-icon" src="tiktok coin.png"/>
+<span class="coins">999,999</span>
+</p>
+</div>
+</div>
+<!-- Username input -->
+<input class="username-input" placeholder="Enter Username" type="text"/>
+<!-- Recharge info -->
+<div class="recharge-info">
+<p class="recharge-line">Recharge:</p>
+<p class="save-note">Save up to 31% compared to in-app purchase</p>
+<div class="icon-line">
+</div>
+</div>
+<!-- Coin selection -->
+<div class="coin-options">
+<div class="option" data-coins="70" data-price="0.74">
+<img alt="coin" src="tiktok coin.png"/> 70<br/><span>$0.74</span>
+</div>
+<div class="option" data-coins="350" data-price="3.70">
+<img alt="coin" src="tiktok coin.png"/> 350<br/><span>$3.70</span>
+</div>
+<div class="option" data-coins="700" data-price="7.40">
+<img alt="coin" src="tiktok coin.png"/> 700<br/><span>$7.40</span>
+</div>
+<div class="option" data-coins="1400" data-price="14.80">
+<img alt="coin" src="tiktok coin.png"/> 1,400<br/><span>$14.80</span>
+</div>
+<div class="option" data-coins="3500" data-price="37.00">
+<img alt="coin" src="tiktok coin.png"/> 3,500<br/><span>$37.00</span>
+</div>
+<div class="option" data-coins="7000" data-price="74.00">
+<img alt="coin" src="tiktok coin.png"/> 7,000<br/><span>$74.00</span>
+</div>
+<div class="option" data-coins="17500" data-price="185.00">
+<img alt="coin" src="tiktok coin.png"/> 17,500<br/><span>$185.00</span>
+</div>
+<div class="option custom">
+<img alt="coin" src="tiktok coin.png"/>
+        Custom<br/><small>Large amount supported</small>
+</div>
+</div>
+<!-- Payment icons (left aligned) -->
+<div class="payment-icons-left">
+<img alt="Visa" src="https://img.icons8.com/color/36/visa.png"/>
+<img alt="MasterCard" src="https://img.icons8.com/color/36/mastercard.png"/>
+<img alt="PayPal" src="https://img.icons8.com/color/36/paypal.png"/>
+<img alt="Card" src="https://img.icons8.com/fluency/36/bank-card-back-side.png"/>
+</div>
+<!-- Total + button -->
+<div class="total-box-left">
+<p>Total: $<span id="total">0.00</span></p>
+</div>
+<button class="recharge-btn" disabled>Recharge</button>
+</div>
+
+<!-- Custom Coin Modal -->
+<!-- Custom Coin Modal -->
+<div class="custom-modal" id="customModal">
+  <div class="custom-content">
+    <div class="custom-header">
+      <h3>Custom</h3>
+      <span class="close-btn">&times;</span>
+    </div>
+
+    <p class="coin-label">Number of Coins</p>
+
+    <div class="coin-display">
+      <img src="tiktok coin.png" alt="coin" />
+      <span id="coinValue">0</span>
+    </div>
+
+    <div class="num-pad">
+  <button>1</button><button>2</button><button>3</button><button class="clear">☒</button>
+  <button>4</button><button>5</button><button>6</button><button>000</button>
+  <button>7</button><button>8</button><button>9</button><button>0</button>
+</div>
+
+
+    <div class="custom-total">
+      <p>Total: $<span id="customTotal">0.00</span></p>
+    </div>
+
+    <button class="recharge-btn">Recharge</button>
+  </div>
+</div>
+
+
+<script>
+    // --- update total dynamically ---
+    const options = document.querySelectorAll('.option');
+    const totalDisplay = document.getElementById('total');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        option.classList.add('active');
+        const price = option.getAttribute('data-price');
+        totalDisplay.textContent = parseFloat(price).toFixed(2);
+      });
+    });
+  </script>
+  <script>
+  const rechargeBtn = document.querySelector('.recharge-btn');
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('active'));
+      option.classList.add('active');
+      const price = option.getAttribute('data-price');
+      totalDisplay.textContent = parseFloat(price).toFixed(2);
+
+      // Enable the recharge button once an option is selected
+      rechargeBtn.disabled = false;
+      rechargeBtn.classList.add('enabled');
+    });
+  });
+</script>
+
+
+<script>
+const customOption = document.querySelector('.option.custom');
+const customModal = document.getElementById('customModal');
+const closeBtn = document.querySelector('.close-btn');
+const coinValue = document.getElementById('coinValue');
+const customTotal = document.getElementById('customTotal');
+const numButtons = document.querySelectorAll('.num-pad button');
+
+let enteredValue = "";
+
+// Open modal
+customOption.addEventListener('click', () => {
+  customModal.classList.add('active');
+  enteredValue = "";
+  coinValue.textContent = "0";
+  customTotal.textContent = "0.00";
+});
+
+// Close modal
+closeBtn.addEventListener('click', () => {
+  customModal.classList.remove('active');
+});
+
+// Close when clicking outside
+customModal.addEventListener('click', e => {
+  if (e.target === customModal) customModal.classList.remove('active');
+});
+
+// Format with commas
+function formatNumber(num) {
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Keypad logic
+numButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.textContent.trim();
+
+    if (val === "←") {
+      enteredValue = enteredValue.slice(0, -1);
+    } else if (val === "000") {
+      // only add 000 if there’s already a number
+      if (enteredValue !== "0" && enteredValue !== "") {
+        enteredValue += "000";
+      }
+    } else {
+      // prevent leading zero
+      if (enteredValue === "0") enteredValue = "";
+      enteredValue += val;
+    }
+
+    // Default to 0 if empty
+    if (enteredValue === "") enteredValue = "0";
+
+    // Format with commas
+    const formatted = formatNumber(enteredValue);
+    coinValue.textContent = formatted;
+
+    // Example: each coin costs $0.010 (adjust if needed)
+    const total = parseInt(enteredValue.replace(/,/g, "") || 0) * 0.010;
+    customTotal.textContent = total.toFixed(2);
+  });
+});
+</script>
+
+</body>
+</html>

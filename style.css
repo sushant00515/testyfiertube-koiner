@@ -1,0 +1,549 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Main merged section */
+.main-card {
+  width: 100%;
+  max-width: 480px;
+  background: transparent;   /* removes white background */
+  padding: 25px 20px 30px;
+  border-radius: 0;          /* removes rounded corners */
+  margin-top: 35px;
+  box-shadow: none;          /* removes shadow */
+}
+
+
+/* Header */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;      /* light grey line */
+  border-bottom: 1px solid #ccc;   /* light grey line */
+  margin-bottom: 25px;
+}
+
+
+.back-icon,
+.history-icon {
+  width: 24px;
+  cursor: pointer;
+}
+
+.header {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+/* Recharge section */
+.recharge-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.custom-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.recharge-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.recharge-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+}
+
+.recharge-value {
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.coin-icon,
+.option img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  object-fit: contain;
+}
+
+
+/* Username input */
+.username-input {
+  width: 95%;               /* slightly smaller than full width */
+  margin: 0 auto 18px auto; /* centers it nicely */
+  display: block;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1.3px solid #ccc;
+  background-color: #fff;
+  font-size: 1em;
+  transition: 0.3s;
+  color: #222;
+}
+
+
+.username-input::placeholder {
+  color: #888;
+}
+
+.username-input:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 6px rgba(0, 119, 255, 0.15);
+}
+
+/* Recharge info */
+.recharge-info {
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.recharge-line {
+  font-weight: 600;
+  color: #222;
+  font-size: 1em;
+  margin: 0 0 4px;
+}
+
+.save-note {
+  color: #ff4d67;
+  font-size: 0.9em;
+  margin: 0 0 6px;
+}
+
+.icon-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.icon-line img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Coin options grid */
+.coin-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.option {
+  background: #f8f8f8;
+  padding: 14px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1.5px solid #e0e0e0;
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+
+.option.active {
+  border: 2px solid #FFD700;   /* gold-yellow border */
+  background: #FFF9D9;         /* light yellow background */
+}
+
+
+.option img {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.option.custom {
+  font-size: 1em;          /* same as normal coin options */
+  color: #000;             /* same text color */
+  font-weight: 500;        /* consistent font weight */
+}
+
+.option.custom small {
+  font-size: 0.85em;       /* smaller for the "Large amount supported" note */
+  color: #555;             /* subtle note color */
+}
+
+
+/* Payment icons (left aligned) */
+.payment-icons-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+/* Total left aligned */
+.total-box-left {
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Recharge button */
+.recharge-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #fe2c55, #ff4d67);
+  color: white;
+  border: none;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 1em;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.recharge-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.recharge-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.recharge-btn.enabled {
+  background: linear-gradient(90deg, #fe2c55, #ff4d67); /* bright yellow gradient */
+  color: white;
+  opacity: 1;
+}
+
+
+/* --- Custom Modal Popup --- */
+.custom-modal {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: bottom 0.4s ease, visibility 0.4s ease;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.custom-modal.active {
+  bottom: 0;
+  visibility: visible;
+}
+
+.custom-content {
+  background: #fff;
+  width: 100%;
+  max-width: 480px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 22px 25px 35px;
+  animation: slideUp 0.35s ease forwards;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Header */
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.custom-header h3 {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+
+.close-btn {
+  font-size: 26px;
+  cursor: pointer;
+  color: #444;
+}
+
+/* Coin Label and Display */
+.coin-label {
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.coin-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.coin-display img {
+  width: 26px;
+  height: 26px;
+}
+
+/* Keypad Grid */
+.num-pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* now 4 columns */
+  gap: 12px;
+  margin-bottom: 25px;
+  justify-items: center;
+}
+
+.num-pad button {
+  width: 100%;
+  padding: 16px 0;
+  font-size: 1.3em;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  background: #f5f5f5;
+  color: #000;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.num-pad .clear {
+  background: #f5f5f5;
+  color: rgb(0, 0, 0);
+}
+
+/* Total display */
+.custom-total {
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.coin-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 25px;
+  justify-content: flex-start;
+}
+
+#coinValue {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  min-width: 120px;
+  text-align: left;
+  display: inline-block;
+}
+
+.coin-display img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  margin-left: 5px;
+}
+
+/* Processing Payment Modal */
+.processing-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3000;
+}
+
+.processing-modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.processing-content {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 330px;
+  width: 88%;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+  transform: translateY(50px);
+  animation: slideInCenter 0.4s ease forwards;
+}
+
+@keyframes slideInCenter {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.processing-img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.processing-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.processing-sub {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.processing-timer {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #444;
+}
+
+/* --- Confirmation Modal --- */
+.confirmation-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4000;
+}
+
+.confirmation-modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.confirmation-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 88%;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+  animation: slideUpConfirm 0.4s ease forwards;
+}
+
+@keyframes slideUpConfirm {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.checkmark {
+  font-size: 2.5em;
+  color: #28c76f;
+  background: #e7f8ee;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+}
+
+.confirmation-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.confirmation-text {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.4em;
+}
+
+.go-back-btn {
+  background: #ff4d67;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.checkmark-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkmark-img img {
+  width: 80px;       /* adjust size as needed */
+  height: 80px;
+  object-fit: contain;
+}
+
